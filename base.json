@@ -1,0 +1,32 @@
+{
+    "variables": {
+      "build_version": "1.0.1",
+      "instance_type": "t2.small",
+      "vpc_id": "vpc-f0f55797",
+      "subnet_id": "subnet-6226bf2b",
+      "source_ami": "ami-b6bb47d4"
+    },
+    "builders": [
+      {
+        "type": "amazon-ebs",
+        "source_ami": "{{user `source_ami`}}",
+        "name": "DevOps Made Easy Basic",
+        "region": "ap-southeast-2",
+        "instance_type": "{{user `instance_type`}}",
+        "ami_name": "ux-nginx-{{user `build_version`}}",
+        "communicator": "ssh",
+        "ssh_username": "centos",
+        "vpc_id": "{{user `vpc_id`}}",
+        "subnet_id": "{{user `subnet_id`}}"
+      }
+    ],
+    "provisioners": [
+      {
+        "type": "shell",
+        "scripts": [ 
+          "./scripts/bootstrap.sh"
+        ]
+      }
+    ]
+  }
+  
