@@ -1,6 +1,6 @@
 {
     "variables": {
-      "build_version": "1.0.1",
+      "build_version": "1.0.2",
       "instance_type": "t2.small",
       "vpc_id": "vpc-f0f55797",
       "subnet_id": "subnet-6226bf2b",
@@ -22,10 +22,8 @@
     ],
     "provisioners": [
       {
-        "type": "shell",
-        "scripts": [ 
-          "./scripts/bootstrap.sh"
-        ]
+          "type": "ansible",
+          "playbook_file": "./playbook.yml"
       }
     ]
   }
